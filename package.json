@@ -19,10 +19,16 @@
   "homepage": "https://github.com/dhiv06/SwampHacks#readme",
   "dependencies": {
     "expo": "^54.0.32",
-    "node-fetch": "^3.3.2"
+    "expo-image-picker": "~17.0.10",
+    "nativewind": "^4.2.1",
+    "node-fetch": "^3.3.2",
+    "react-dom": "19.1.0",
+    "react-native-web": "^0.21.0"
   },
   "devDependencies": {
+    "@react-native-community/cli": "^20.1.0",
     "@types/react": "~19.1.10",
+    "tailwindcss": "^3.4.19",
     "typescript": "~5.9.2"
   }
 }
