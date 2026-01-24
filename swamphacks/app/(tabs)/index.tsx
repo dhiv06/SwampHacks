@@ -1,3 +1,4 @@
+import WeatherWidget from "../../src/components/WeatherWidget";
 import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
