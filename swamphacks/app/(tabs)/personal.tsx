@@ -15,16 +15,16 @@ export default function PersonalScreen() {
     //         </ThemedText>
     //         <ThemedText type="title">Your Closet</ThemedText>
     //       </ThemedView>
-        <ThemedView
-  style={{
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    paddingBottom: 24,
-  }}
->
-  <ThemedText>Your Closet</ThemedText>
-</ThemedView>
+    <ThemedView
+        style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingBottom: 24,
+        }}
+    >
+    <ThemedText>Your Closet</ThemedText>
+    </ThemedView>
   );
 }
 const styles = StyleSheet.create({
