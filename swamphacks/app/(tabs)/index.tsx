@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, Act
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { getMorningWardrobePrep } from '../../src/api/geminiapi';
+import WeatherWidget from '../../src/components/WeatherWidget';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -27,6 +28,11 @@ export default function HomeScreen() {
         </TouchableOpacity>
 
         {/* Info Cards */}
+        <View style={styles.infoCard}>
+           <Text style={styles.cardHeader}>Weather</Text>
+           <WeatherWidget/>
+        </View>
+
         <View style={styles.infoCard}>
            <Text style={styles.cardHeader}>Today&apos;s Vibe</Text>
            <Text>{prep?.briefing || "Loading..."}</Text>
