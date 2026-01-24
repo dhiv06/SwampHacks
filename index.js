@@ -1,4 +1,6 @@
-import { getCurrentWeather } from "./weather.js";
+// THIS MAY GET DELETED. IS NOT BEING USED BY EXPO
+
+import { getCurrentWeather } from "./swamphacks/src/api/weather.js";
 
 const latitude = 29.65;
 const longitude = -82.34;
