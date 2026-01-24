@@ -21,8 +21,8 @@ export default function HomeScreen() {
       {/* Weather overlay */}
       <WeatherWidget />
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title">Welcome to Swamphacks!</ThemedText>
+        {/* <HelloWave /> */}
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
