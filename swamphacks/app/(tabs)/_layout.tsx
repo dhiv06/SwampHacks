@@ -1,46 +1,43 @@
+// FILE: app/(tabs)/_layout.tsx
 import { Tabs } from 'expo-router';
 import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { View } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-
-      {/* home button */}
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          height: 80,
+          backgroundColor: '#D9D9D9',
+          borderTopWidth: 0,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <View style={{ width: 30, height: 30, backgroundColor: focused ? '#808080' : '#A0A0A0', borderRadius: 4 }} />
+          ),
         }}
       />
-
-      {/* create button */}
       <Tabs.Screen
-        name="explore"
+        name="closet"
         options={{
-          title: 'Create',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <View style={{ width: 30, height: 30, backgroundColor: focused ? '#808080' : '#A0A0A0', borderRadius: 4 }} />
+          ),
         }}
       />
-
-      {/* closet button */}
       <Tabs.Screen
-        name="personal"
+        name="create"
         options={{
-          title: 'Closet',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <View style={{ width: 30, height: 30, backgroundColor: focused ? '#808080' : '#A0A0A0', borderRadius: 4 }} />
+          ),
         }}
       />
     </Tabs>
