@@ -1,6 +1,6 @@
 # SwampHacks
-# npm install expo
-# npx expo start
+npm install expo
+npx expo start
 
 # Gemini API Project
 
