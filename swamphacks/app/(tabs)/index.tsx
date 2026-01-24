@@ -18,6 +18,8 @@ export default function HomeScreen() {
           style={styles.reactLogo}
         />
       }>
+      {/* Weather overlay */}
+      <WeatherWidget />
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
