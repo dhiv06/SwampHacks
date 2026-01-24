@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/dhiv06/SwampHacks#readme",
   "dependencies": {
+    "expo": "^54.0.32",
     "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
   }
 }
