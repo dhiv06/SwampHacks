@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { getMorningWardrobePrep } from '../../src/api/geminiapi';
+
+const COLORS = {
+  text: '#2F3E46',
+  accent: '#52796F',
+};
+
+// PLACEHOLDER LOGO (Replace uri with your own or require('../../assets...'))
+const LOGO_URI = 'https://via.placeholder.com/150x50/transparent/000000?text=LOGO';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -13,41 +21,78 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.welcomeText}>Welcome!</Text>
-
-        {/* OOTD Card - Navigate to Create Tab */}
-        <TouchableOpacity style={styles.ootdCard} onPress={() => router.push('/(tabs)/create')}>
-          <View>
-            <Text style={styles.ootdTitle}>OOTD</Text>
-            <Text style={styles.ootdSubtitle}>Create your outfit for the day</Text>
+    <LinearGradient colors={['#EAF4F4', '#A4C3B2']} style={styles.container}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          
+          {/* 1. LOGO HEADER */}
+          <View style={styles.logoContainer}>
+            <Image source={{ uri: LOGO_URI }} style={styles.logo} />
           </View>
-          <Ionicons name="arrow-forward" size={24} color="black" />
-        </TouchableOpacity>
 
-        {/* Info Cards */}
-        <View style={styles.infoCard}>
-           <Text style={styles.cardHeader}>Today&apos;s Vibe</Text>
-           <Text>{prep?.briefing || "Loading..."}</Text>
-        </View>
+          <Text style={styles.welcomeText}>Good Morning.</Text>
 
-        <View style={styles.infoCard}>
-           <Text style={styles.cardHeader}>Stylist Tip</Text>
-           <Text>{prep?.outfit_tip || "Loading..."}</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          {/* OOTD GLASS CARD */}
+          <TouchableOpacity style={styles.glassCard} onPress={() => router.push('/(tabs)/create')}>
+            <View>
+              <Text style={styles.cardTitle}>Daily Look</Text>
+              <Text style={styles.cardSubtitle}>Generate your fit check ✨</Text>
+            </View>
+            <View style={styles.arrowBtn}>
+               <Text style={{fontSize: 20}}>→</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* INFO GLASS CARDS */}
+          <View style={styles.glassCardSmall}>
+             <Text style={styles.cardHeader}>Vibe Check</Text>
+             <Text style={styles.cardBody}>{prep?.briefing || "Loading vibes..."}</Text>
+          </View>
+
+          <View style={styles.glassCardSmall}>
+             <Text style={styles.cardHeader}>Stylist Tip</Text>
+             <Text style={styles.cardBody}>{prep?.outfit_tip || "Stay chic."}</Text>
+          </View>
+
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#F2F2F2' },
-  scrollContent: { padding: 20 },
-  welcomeText: { fontSize: 24, fontWeight: '500', marginBottom: 20, marginTop: 10 },
-  ootdCard: { backgroundColor: '#D9D9D9', height: 120, padding: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 20 },
-  ootdTitle: { fontSize: 18, fontWeight: 'bold' },
-  ootdSubtitle: { fontSize: 12, marginTop: 5 },
-  infoCard: { backgroundColor: '#D9D9D9', padding: 15, marginBottom: 15, height: 100, justifyContent: 'center' },
-  cardHeader: { fontWeight: 'bold', marginBottom: 5 },
+  container: { flex: 1 },
+  scrollContent: { padding: 25, paddingBottom: 100 },
+  logoContainer: { height: 60, justifyContent: 'center', marginBottom: 20 },
+  logo: { width: 120, height: 40, resizeMode: 'contain' },
+  
+  welcomeText: { fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
+  
+  glassCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.65)',
+    borderRadius: 30,
+    padding: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.9)',
+    shadowColor: '#52796F',
+    shadowOpacity: 0.1,
+    shadowRadius: 15,
+  },
+  glassCardSmall: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    borderRadius: 25,
+    padding: 20,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.6)',
+  },
+  cardTitle: { fontSize: 24, fontWeight: '600', color: COLORS.text },
+  cardSubtitle: { fontSize: 14, color: COLORS.accent, marginTop: 5 },
+  cardHeader: { fontWeight: '700', color: COLORS.accent, marginBottom: 5, textTransform: 'uppercase', fontSize: 12, letterSpacing: 1 },
+  cardBody: { color: COLORS.text, fontSize: 16 },
+  arrowBtn: { backgroundColor: '#fff', width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }
 });
