@@ -20,46 +20,33 @@ const WEATHER_CODE_MAP = {
   95: "Thunderstorm"
 };
 
-// export async function getCurrentWeather(latitude, longitude) {
-//   const url =
-//     `https://api.open-meteo.com/v1/forecast` +
-//     `?latitude=${latitude}` +
-//     `&longitude=${longitude}` +
-//     `&current_weather=true` +
-//     `&hourly=relativehumidity_2m` +
-//     `&timezone=auto`;
+export async function getCurrentWeather(latitude, longitude) {
+  const url =
+    `https://api.open-meteo.com/v1/forecast` +
+    `?latitude=${latitude}` +
+    `&longitude=${longitude}` +
+    `&current_weather=true` +
+    `&hourly=relativehumidity_2m` +
+    `&timezone=auto`;
 
-//   const response = await fetch(url);
-//   const data = await response.json();
-
-//   // Current temperature
-//   const temperature = data.current_weather.temperature;
-
-//   // Weather condition from code
-//   const weatherCode = data.current_weather.weathercode;
-//   const condition = WEATHER_CODE_MAP[weatherCode] || "Unknown";
-
-//   // Match humidity to current time
-//   const currentTime = data.current_weather.time;
-//   const timeIndex = data.hourly.time.indexOf(currentTime);
-//   const humidity = data.hourly.relativehumidity_2m[timeIndex];
-
-//   return {
-//     temperature, // °C
-//     condition,   // string
-//     humidity     // %
-//   };
-// }
-export async function getCurrentWeather(lat, lon) {
-  const response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code`
-  );
-
+  const response = await fetch(url);
   const data = await response.json();
 
+  // Current temperature
+  const temperature = data.current_weather.temperature;
+
+  // Weather condition from code
+  const weatherCode = data.current_weather.weathercode;
+  const condition = WEATHER_CODE_MAP[weatherCode] || "Unknown";
+
+  // Match humidity to current time
+  const currentTime = data.current_weather.time;
+  const timeIndex = data.hourly.time.indexOf(currentTime);
+  const humidity = data.hourly.relativehumidity_2m[timeIndex];
+
   return {
-    temperature: data.current.temperature_2m,
-    humidity: data.current.relative_humidity_2m,
-    condition: data.current.weather_code,
+    temperature, // °C
+    condition,   // string
+    humidity     // %
   };
 }
