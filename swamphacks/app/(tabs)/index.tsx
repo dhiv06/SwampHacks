@@ -1,101 +1,53 @@
-import WeatherWidget from "../../src/components/WeatherWidget";
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, ActivityIndicator } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { getMorningWardrobePrep } from '../../src/api/geminiapi';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      {/* Weather overlay */}
-      <WeatherWidget />
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome to Swamphacks!</ThemedText>
-        {/* <HelloWave /> */}
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
+  const [prep, setPrep] = useState<any>(null);
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  useEffect(() => {
+    getMorningWardrobePrep(40.7128, -74.0060).then(setPrep);
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.welcomeText}>Welcome!</Text>
+
+        {/* OOTD Card - Navigate to Create Tab */}
+        <TouchableOpacity style={styles.ootdCard} onPress={() => router.push('/(tabs)/create')}>
+          <View>
+            <Text style={styles.ootdTitle}>OOTD</Text>
+            <Text style={styles.ootdSubtitle}>Create your outfit for the day</Text>
+          </View>
+          <Ionicons name="arrow-forward" size={24} color="black" />
+        </TouchableOpacity>
+
+        {/* Info Cards */}
+        <View style={styles.infoCard}>
+           <Text style={styles.cardHeader}>Today&apos;s Vibe</Text>
+           <Text>{prep?.briefing || "Loading..."}</Text>
+        </View>
+
+        <View style={styles.infoCard}>
+           <Text style={styles.cardHeader}>Stylist Tip</Text>
+           <Text>{prep?.outfit_tip || "Loading..."}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+  container: { flex: 1, backgroundColor: '#F2F2F2' },
+  scrollContent: { padding: 20 },
+  welcomeText: { fontSize: 24, fontWeight: '500', marginBottom: 20, marginTop: 10 },
+  ootdCard: { backgroundColor: '#D9D9D9', height: 120, padding: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 20 },
+  ootdTitle: { fontSize: 18, fontWeight: 'bold' },
+  ootdSubtitle: { fontSize: 12, marginTop: 5 },
+  infoCard: { backgroundColor: '#D9D9D9', padding: 15, marginBottom: 15, height: 100, justifyContent: 'center' },
+  cardHeader: { fontWeight: 'bold', marginBottom: 5 },
 });
