@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
   logoContainer: { height: 100, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
   logo: { width: 200, height: 80, resizeMode: 'contain' },
   
-  welcomeText: { fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
+  welcomeText: { fontFamily: 'Guckly', fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
   glassCard: {
-    backgroundColor: '#d8cfaf',
+    backgroundColor: '#f1e7c5',
     borderRadius: 30,
     padding: 25,
     flexDirection: 'row',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
   },
   glassCardSmall: {
-    backgroundColor: '#d8cfaf',
+    backgroundColor: '#f1e7c5',
     borderRadius: 25,
     padding: 20,
     marginBottom: 15,
