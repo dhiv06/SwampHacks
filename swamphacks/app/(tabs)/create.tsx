@@ -17,7 +17,7 @@ export default function CreateScreen() {
     // 1. Prepare Inventory Map
     const all = await getFullCloset();
     const map: any = {};
-    all.forEach((i: any) => map[i.id] = i.imageUri);
+    all.forEach((i: any) => (map[i.id] = i.imageUri));
     setImages(map);
     
     // 2. Call API
@@ -42,13 +42,15 @@ export default function CreateScreen() {
   };
 
   return (
-    <LinearGradient colors={['#F6FFF8', '#EAF4F4']} style={styles.container}>
+    /* EXACT SAME BACKGROUND AS INDEX */
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.header}>
-           <Image source={{ uri: LOGO_URI }} style={styles.logo} />
-           <Text style={styles.title}>Stylist</Text>
-        </View>
         
+        <View style={styles.header}>
+          <Image source={{ uri: LOGO_URI }} style={styles.logo} />
+          <Text style={styles.title}>Stylist</Text>
+        </View>
+
         <View style={styles.glassCanvas}>
           {loading ? (
             <View style={{alignItems: 'center'}}>
@@ -151,19 +153,47 @@ export default function CreateScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { padding: 25 },
-  logo: { width: 100, height: 30, resizeMode: 'contain', marginBottom: 10, opacity: 0.5 },
-  title: { fontSize: 28, fontWeight: '300', color: '#2F3E46' },
-  loadingText: { marginTop: 15, color: '#52796F', fontWeight: '500' },
 
-  glassCanvas: { 
-    flex: 1, 
-    marginHorizontal: 10, marginBottom: 85,
-    backgroundColor: 'rgba(255,255,255,0.7)', 
-    borderRadius: 35, 
-    padding: 15,
-    borderWidth: 1, borderColor: '#fff',
+  header: {
+    padding: 25,
+    paddingBottom: 10,
   },
+
+  logo: {
+    width: 100,
+    height: 30,
+    resizeMode: 'contain',
+    opacity: 0.5,
+    marginBottom: 8,
+  },
+
+  title: {
+    fontSize: 28,
+    fontWeight: '300',
+    color: '#2F3E46', // EXACT MATCH
+  },
+
+  glassCanvas: {
+    flex: 1,
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 110,
+    backgroundColor: 'rgba(255,255,255,0.6)', // SAME AS INDEX
+    borderRadius: 40,
+    padding: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+  loadingText: {
+  marginTop: 12,
+  fontSize: 14,
+  color: '#52796F',
+  fontStyle: 'italic',
+  textAlign: 'center',
+},
+
   
   generateBtn: { backgroundColor: '#2F3E46', padding: 20, borderRadius: 20, width: '80%', alignItems: 'center', alignSelf:'center', marginTop: '50%' },
   btnText: { color: '#fff', fontSize: 18, fontWeight: '600' },
@@ -199,3 +229,55 @@ const styles = StyleSheet.create({
   refreshBtn: { marginTop: 10, backgroundColor: '#fff', paddingHorizontal: 25, paddingVertical: 10, borderRadius: 20, alignSelf: 'center' },
   refreshText: { color: '#2F3E46', fontWeight: '700' }
 });
+
+//   scrollContent: {
+//     alignItems: 'center',
+//     paddingBottom: 20,
+//   },
+
+//   generateBtn: {
+//     backgroundColor: '#2F3E46', // SAME AS INDEX BUTTONS
+//     paddingVertical: 18,
+//     paddingHorizontal: 45,
+//     borderRadius: 30,
+//   },
+
+//   btnText: {
+//     color: '#fff',
+//     fontSize: 18,
+//     fontWeight: '500',
+//     letterSpacing: 1,
+//   },
+
+//   reasoning: {
+//     color: '#52796F', // SAME SECONDARY COLOR
+//     fontStyle: 'italic',
+//     textAlign: 'center',
+//     marginBottom: 25,
+//     paddingHorizontal: 10,
+//   },
+
+//   collage: {
+//     gap: 18,
+//     alignItems: 'center',
+//   },
+
+//   piece: {
+//     width: 210,
+//     height: 210,
+//     borderRadius: 25,
+//     resizeMode: 'cover',
+//   },
+
+//   refreshBtn: {
+//     marginTop: 30,
+//     paddingVertical: 10,
+//     paddingHorizontal: 30,
+//   },
+
+//   refreshText: {
+//     color: '#2F3E46',
+//     fontWeight: '600',
+//     letterSpacing: 1,
+//   },
+// });

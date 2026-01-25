@@ -73,11 +73,11 @@ export default function Closet() {
   };
 
   return (
-    <LinearGradient colors={['#EAF4F4', '#F6FFF8']} style={styles.container}>
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
           <Image source={{ uri: LOGO_URI }} style={styles.logo} />
-          <Text style={styles.title}>My Collection</Text>
+          <Text style={styles.title}>My Closet</Text>
         </View>
         <View style={{ height: 60, marginBottom: 15 }}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryScroll}>
