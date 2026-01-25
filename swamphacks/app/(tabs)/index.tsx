@@ -6,12 +6,12 @@ import { getMorningWardrobePrep } from '../../src/api/geminiapi';
 import WeatherWidget from '../../src/components/WeatherWidget';
 
 const COLORS = {
-  text: '#2F3E46',
-  accent: '#52796F',
+  text: '#49463b',
+  accent: '#73634f',
 };
 
 // PLACEHOLDER LOGO (Replace uri with your own or require('../../assets...'))
-const LOGO_URI = 'https://via.placeholder.com/150x50/transparent/000000?text=LOGO';
+const LOGO_URI = require('../../assets/images/newicons/theLogo.png');
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <LinearGradient colors={['#EAF4F4', '#A4C3B2']} style={styles.container}>
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
           
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   welcomeText: { fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
   glassCard: {
-    backgroundColor: 'rgba(255, 255, 255, 0.65)',
+    backgroundColor: '#d8cfaf',
     borderRadius: 30,
     padding: 25,
     flexDirection: 'row',
@@ -83,20 +83,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.9)',
-    shadowColor: '#52796F',
+    borderColor: '#e6b89c',
+    shadowColor: '#ed9390',
     shadowOpacity: 0.1,
     shadowRadius: 15,
   },
   glassCardSmall: {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: '#d8cfaf',
     borderRadius: 25,
     padding: 20,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.6)',
+    borderColor: '#e6b89c',
   },
-  cardTitle: { fontSize: 24, fontWeight: '600', color: COLORS.text },
+  cardTitle: { fontFamily: 'AesthetNova', fontSize: 24, fontWeight: '600', color: COLORS.text },
   cardSubtitle: { fontSize: 14, color: COLORS.accent, marginTop: 5 },
   cardHeader: { fontWeight: '700', color: COLORS.accent, marginBottom: 5, textTransform: 'uppercase', fontSize: 12, letterSpacing: 1 },
   cardBody: { color: COLORS.text, fontSize: 16 },
