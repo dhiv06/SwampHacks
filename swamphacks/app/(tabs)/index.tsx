@@ -28,7 +28,7 @@ export default function HomeScreen() {
           
           {/* 1. LOGO HEADER */}
           <View style={styles.logoContainer}>
-            <Image source={{ uri: LOGO_URI }} style={styles.logo} />
+            <Image source={LOGO_URI} style={styles.logo} />
           </View>
 
           <Text style={styles.welcomeText}>Good Morning.</Text>
@@ -69,8 +69,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scrollContent: { padding: 25, paddingBottom: 100 },
-  logoContainer: { height: 60, justifyContent: 'center', marginBottom: 20 },
-  logo: { width: 120, height: 40, resizeMode: 'contain' },
+  logoContainer: { height: 100, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
+  logo: { width: 200, height: 80, resizeMode: 'contain' },
   
   welcomeText: { fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
