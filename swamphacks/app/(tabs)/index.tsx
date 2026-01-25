@@ -6,12 +6,12 @@ import { getMorningWardrobePrep } from '../../src/api/geminiapi';
 import WeatherWidget from '../../src/components/WeatherWidget';
 
 const COLORS = {
-  text: '#2F3E46',
-  accent: '#52796F',
+  text: '#49463b',
+  accent: '#73634f',
 };
 
 // PLACEHOLDER LOGO (Replace uri with your own or require('../../assets...'))
-const LOGO_URI = 'https://via.placeholder.com/150x50/transparent/000000?text=LOGO';
+const LOGO_URI = require('../../assets/images/newicons/theLogo.png');
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -22,16 +22,16 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <LinearGradient colors={['#EAF4F4', '#A4C3B2']} style={styles.container}>
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollContent}>
           
           {/* 1. LOGO HEADER */}
           <View style={styles.logoContainer}>
-            <Image source={{ uri: LOGO_URI }} style={styles.logo} />
+            <Image source={LOGO_URI} style={styles.logo} />
           </View>
 
-          <Text style={styles.welcomeText}>Good Morning.</Text>
+          <Text style={styles.welcomeText}>Welcome!</Text>
 
           {/* OOTD GLASS CARD */}
           <TouchableOpacity style={styles.glassCard} onPress={() => router.push('/(tabs)/create')}>
@@ -50,15 +50,20 @@ export default function HomeScreen() {
              <WeatherWidget/>
           </View>
 
-          <View style={styles.glassCardSmall}>
-             <Text style={styles.cardHeader}>Vibe Check</Text>
-             <Text style={styles.cardBody}>{prep?.briefing || "Loading vibes..."}</Text>
-          </View>
-
-          <View style={styles.glassCardSmall}>
-             <Text style={styles.cardHeader}>Stylist Tip</Text>
-             <Text style={styles.cardBody}>{prep?.outfit_tip || "Stay chic."}</Text>
-          </View>
+          <View style={styles.row}>
+            <View style={styles.squareCard}>
+              <Text style={styles.cardHeader}>Vibe Check</Text>
+              <Text style={styles.cardBody} numberOfLines={4}>
+                {prep?.briefing || "Loading vibes..."}
+              </Text>
+            </View>
+            <View style={styles.squareCard}>
+              <Text style={styles.cardHeader}>Stylist Tip</Text>
+              <Text style={styles.cardBody} numberOfLines={4}>
+                {prep?.outfit_tip || "Stay chic."}
+              </Text>
+            </View>
+          </View>   
 
         </ScrollView>
       </SafeAreaView>
@@ -69,13 +74,13 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   scrollContent: { padding: 25, paddingBottom: 100 },
-  logoContainer: { height: 60, justifyContent: 'center', marginBottom: 20 },
-  logo: { width: 120, height: 40, resizeMode: 'contain' },
+  logoContainer: { height: 100, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
+  logo: { width: 200, height: 80, resizeMode: 'contain' },
   
-  welcomeText: { fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
+  welcomeText: { fontFamily: 'MouldyCheese', fontSize: 32, color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
   glassCard: {
-    backgroundColor: 'rgba(255, 255, 255, 0.65)',
+    backgroundColor: '#f1e7c5',
     borderRadius: 30,
     padding: 25,
     flexDirection: 'row',
@@ -83,18 +88,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.9)',
-    shadowColor: '#52796F',
+    borderColor: '#e6b89c',
+    shadowColor: '#ed9390',
     shadowOpacity: 0.1,
     shadowRadius: 15,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  squareCard: {
+    width: '48%',
+    aspectRatio: 1, // 👈 makes them perfect squares
+    backgroundColor: '#f1e7c5',
+    borderRadius: 25,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#e6b89c',
+    justifyContent: 'space-between',
+  },
+
   glassCardSmall: {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: '#f1e7c5',
     borderRadius: 25,
     padding: 20,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.6)',
+    borderColor: '#e6b89c',
   },
   cardTitle: { fontSize: 24, fontWeight: '600', color: COLORS.text },
   cardSubtitle: { fontSize: 14, color: COLORS.accent, marginTop: 5 },
