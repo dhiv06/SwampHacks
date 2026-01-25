@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   itemCategory: { fontSize: 12, color: '#2F3E46', fontWeight: 'bold', textAlign: 'center' },
   staticBadge: { position: 'absolute', top: 10, right: 10, backgroundColor: 'rgba(82, 121, 111, 0.8)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 10 },
   staticBadgeText: { color: '#fff', fontSize: 10, fontWeight: 'bold' },
-  buttonRow: { position: 'absolute', bottom: 90, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', gap: 15 },
+  buttonRow: { position: 'absolute', bottom: 100, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', gap: 15 },
   fab: { backgroundColor: 'rgba(47, 62, 70, 0.9)', paddingVertical: 15, paddingHorizontal: 20, borderRadius: 30, minWidth: 140, alignItems: 'center', elevation: 8 },
   fabText: { color: '#fff', fontWeight: '600', letterSpacing: 0.5 }
 });
