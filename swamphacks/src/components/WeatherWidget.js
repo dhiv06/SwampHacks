@@ -23,15 +23,28 @@ export default function WeatherWidget() {
   }
 
   return (
-    <View>
+    <View style={styles.row}>
+        <View style={styles.leftSpace} />
+        <View style={styles.weatherBlock}>
       <Text style={styles.temp}>{weather.temperature}°C</Text>
       <Text style={styles.condition}>{weather.condition}</Text>
       <Text style={styles.humidity}>Humidity: {weather.humidity}%</Text>
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+    row:{
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    leftSpace:{
+        flex: 1,
+    },
+    weatherBlock:{
+        alignItems: "flex-end",
+    },
   temp: {
     color: "#2F3E46",
     fontSize: 18,
