@@ -50,15 +50,20 @@ export default function HomeScreen() {
              <WeatherWidget/>
           </View>
 
-          <View style={styles.glassCardSmall}>
-             <Text style={styles.cardHeader}>Vibe Check</Text>
-             <Text style={styles.cardBody}>{prep?.briefing || "Loading vibes..."}</Text>
-          </View>
-
-          <View style={styles.glassCardSmall}>
-             <Text style={styles.cardHeader}>Stylist Tip</Text>
-             <Text style={styles.cardBody}>{prep?.outfit_tip || "Stay chic."}</Text>
-          </View>
+          <View style={styles.row}>
+            <View style={styles.squareCard}>
+              <Text style={styles.cardHeader}>Vibe Check</Text>
+              <Text style={styles.cardBody} numberOfLines={4}>
+                {prep?.briefing || "Loading vibes..."}
+              </Text>
+            </View>
+            <View style={styles.squareCard}>
+              <Text style={styles.cardHeader}>Stylist Tip</Text>
+              <Text style={styles.cardBody} numberOfLines={4}>
+                {prep?.outfit_tip || "Stay chic."}
+              </Text>
+            </View>
+          </View>   
 
         </ScrollView>
       </SafeAreaView>
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
   logoContainer: { height: 100, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
   logo: { width: 200, height: 80, resizeMode: 'contain' },
   
-  welcomeText: { fontFamily: 'Guckly', fontSize: 32, fontWeight: '300', color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
+  welcomeText: { fontFamily: 'Guckly', fontSize: 32, color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
   glassCard: {
     backgroundColor: '#f1e7c5',
@@ -88,6 +93,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 15,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15,
+  },
+  squareCard: {
+    width: '48%',
+    aspectRatio: 1, // 👈 makes them perfect squares
+    backgroundColor: '#f1e7c5',
+    borderRadius: 25,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#e6b89c',
+    justifyContent: 'space-between',
+  },
+
   glassCardSmall: {
     backgroundColor: '#f1e7c5',
     borderRadius: 25,
