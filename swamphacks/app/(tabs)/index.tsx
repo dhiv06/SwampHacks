@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, Ima
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getMorningWardrobePrep } from '../../src/api/geminiapi';
+import WeatherWidget from '../../src/components/WeatherWidget';
 
 const COLORS = {
   text: '#2F3E46',
@@ -44,6 +45,11 @@ export default function HomeScreen() {
           </TouchableOpacity>
 
           {/* INFO GLASS CARDS */}
+          <View style={styles.glassCardSmall}>
+             <Text style={styles.cardHeader}>Weather</Text>
+             <WeatherWidget/>
+          </View>
+
           <View style={styles.glassCardSmall}>
              <Text style={styles.cardHeader}>Vibe Check</Text>
              <Text style={styles.cardBody}>{prep?.briefing || "Loading vibes..."}</Text>

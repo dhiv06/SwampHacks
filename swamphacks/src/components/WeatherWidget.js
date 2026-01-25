@@ -19,11 +19,11 @@ export default function WeatherWidget() {
   }, []);
 
   if (!weather) {
-    return null;
+    return <Text style={styles.loading}> Looking outside...</Text>;
   }
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.temp}>{weather.temperature}°C</Text>
       <Text style={styles.condition}>{weather.condition}</Text>
       <Text style={styles.humidity}>Humidity: {weather.humidity}%</Text>
@@ -32,26 +32,21 @@ export default function WeatherWidget() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: 40,
-    right: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
-    padding: 10,
-    borderRadius: 10,
-    zIndex: 1000
-  },
   temp: {
-    color: "white",
+    color: "#2F3E46",
     fontSize: 18,
     fontWeight: "bold"
   },
   condition: {
-    color: "white",
+    color: "#52796F",
     fontSize: 14
   },
   humidity: {
-    color: "white",
+    color: "#52796F",
     fontSize: 12
+  },
+  loading: {
+    fontSize: 14,
+    color: "#52796F",
   }
 });
