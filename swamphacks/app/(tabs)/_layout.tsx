@@ -5,9 +5,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 // REPLACE THESE WITH YOUR OWN ICONS IF NEEDED
 const ICONS = {
-  home: require('../../assets/images/icon.png'),   // Replace with your Home icon path
-  closet: require('../../assets/images/icon.png'), // Replace with your Closet icon path
-  create: require('../../assets/images/icon.png'), // Replace with your Create icon path
+  home: require('../../assets/images/newicons/homeButton.png'),   // Replace with your Home icon path
+  closet: require('../../assets/images/newicons/closetButton.png'), // Replace with your Closet icon path
+  create: require('../../assets/images/newicons/createButton.png'), // Replace with your Create icon path
 };
 
 export default function TabLayout() {
@@ -39,7 +39,13 @@ export default function TabLayout() {
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={[styles.iconContainer, focused && styles.activeIcon]}>
-                <Image source={ICONS.home} style={[styles.icon, { opacity: focused ? 1 : 0.5 }]} />
+                <Image 
+                  source={ICONS.home}
+                  style={{ 
+                    width: 50, 
+                    height: 50,
+                    resizeMode: 'contain'
+                  }} />
               </View>
             ),
           }}
@@ -49,7 +55,14 @@ export default function TabLayout() {
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={[styles.iconContainer, focused && styles.activeIcon]}>
-                <Image source={ICONS.closet} style={[styles.icon, { opacity: focused ? 1 : 0.5 }]} />
+                <Image 
+                  source={ICONS.closet}
+                  style={{ 
+                    width: 50, 
+                    height: 50,
+                    resizeMode: 'contain'
+                  }}
+                />
               </View>
             ),
           }}
@@ -59,7 +72,14 @@ export default function TabLayout() {
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={[styles.iconContainer, focused && styles.activeIcon]}>
-                <Image source={ICONS.create} style={[styles.icon, { opacity: focused ? 1 : 0.5 }]} />
+                <Image 
+                  source={ICONS.create}
+                style={{ 
+                  width: 50, 
+                  height: 50, 
+                  resizeMode: 'contain'
+                }}
+               />
               </View>
             ),
           }}
