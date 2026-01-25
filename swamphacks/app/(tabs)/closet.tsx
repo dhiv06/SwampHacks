@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
-import { getFullCloset, deconstructItem, deleteItem } from '../../src/api/geminiapi';
+import { getFullCloset, deconstructItem, deleteItem } from '@/src/api/geminiapi.js';
 
-const LOGO_URI = 'https://via.placeholder.com/150x50/transparent/000000?text=LOGO';
+const LOGO_URI = require('../../assets/images/newicons/theLogo.png');
 
 export default function ClosetScreen() {
   const [closet, setCloset] = useState<any[]>([]);
@@ -27,7 +27,7 @@ export default function ClosetScreen() {
   };
 
   return (
-    <LinearGradient colors={['#EAF4F4', '#F6FFF8']} style={styles.container}>
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
           <Image source={{ uri: LOGO_URI }} style={styles.logo} />
@@ -61,25 +61,27 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   header: { padding: 25 },
   logo: { width: 100, height: 30, resizeMode: 'contain', marginBottom: 10, opacity: 0.5 },
-  title: { fontSize: 28, fontWeight: '300', color: '#2F3E46' },
+  title: { fontSize: 28, fontWeight: '300', color: '#49463b' },
   
   glassItem: { 
     flex: 1, 
     margin: 8, 
-    height: 200, 
+    height: 150, 
     borderRadius: 20, 
-    backgroundColor: '#fff',
+    backgroundColor: '#d8cfaf',
+    borderWidth: 1,
+    borderColor: '#e6b89c',
     overflow: 'hidden',
     elevation: 3,
-    shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 10 
+    shadowColor: '#ed9390', shadowOpacity: 0.1, shadowRadius: 10 
   },
   image: { width: '100%', height: '100%', resizeMode: 'cover' },
   
   fab: { 
     position: 'absolute', bottom: 110, alignSelf: 'center', 
-    backgroundColor: 'rgba(47, 62, 70, 0.9)', 
+    backgroundColor: '#73634f', 
     paddingVertical: 15, paddingHorizontal: 30, borderRadius: 30,
-    shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 10
+    shadowColor: '#ed9390', shadowOpacity: 0.2, shadowRadius: 10
   },
   fabText: { color: '#fff', fontWeight: '600', letterSpacing: 1 }
 });
