@@ -14,39 +14,50 @@ export default function CreateScreen() {
     setLoading(true);
     const all = await getFullCloset();
     const map: any = {};
-    all.forEach((i: any) => map[i.id] = i.imageUri);
+    all.forEach((i: any) => (map[i.id] = i.imageUri));
     setImages(map);
-    
-    const res = await getPeakOutfit(40.7, -74.0, "Casual aesthetic");
+
+    const res = await getPeakOutfit(40.7, -74.0, 'Casual aesthetic');
     setOutfit(res);
     setLoading(false);
   };
 
   return (
-    <LinearGradient colors={['#F6FFF8', '#EAF4F4']} style={styles.container}>
+    /* EXACT SAME BACKGROUND AS INDEX */
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.header}>
-           <Image source={{ uri: LOGO_URI }} style={styles.logo} />
-           <Text style={styles.title}>Stylist</Text>
-        </View>
         
+        <View style={styles.header}>
+          <Image source={{ uri: LOGO_URI }} style={styles.logo} />
+          <Text style={styles.title}>Stylist</Text>
+        </View>
+
         <View style={styles.glassCanvas}>
-          {loading ? <ActivityIndicator size="large" color="#52796F" /> : !outfit ? (
-            <TouchableOpacity onPress={generate} style={styles.generateBtn}>
+          {loading ? (
+            <ActivityIndicator size="large" color="#2F3E46" />
+          ) : !outfit ? (
+            <TouchableOpacity style={styles.generateBtn} onPress={generate}>
               <Text style={styles.btnText}>Curate Look</Text>
             </TouchableOpacity>
           ) : (
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{alignItems:'center'}}>
+            <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
               <Text style={styles.reasoning}>{outfit.reasoning}</Text>
-              
+
               <View style={styles.collage}>
-                {['top', 'bottom', 'shoes'].map(part => (
-                  outfit.outfit_ids?.[part] && images[outfit.outfit_ids[part]] && 
-                  <Image key={part} source={{ uri: images[outfit.outfit_ids[part]] }} style={styles.piece} />
-                ))}
+                {['top', 'bottom', 'shoes'].map(
+                  (part) =>
+                    outfit.outfit_ids?.[part] &&
+                    images[outfit.outfit_ids[part]] && (
+                      <Image
+                        key={part}
+                        source={{ uri: images[outfit.outfit_ids[part]] }}
+                        style={styles.piece}
+                      />
+                    )
+                )}
               </View>
 
-              <TouchableOpacity onPress={generate} style={styles.refreshBtn}>
+              <TouchableOpacity style={styles.refreshBtn} onPress={generate}>
                 <Text style={styles.refreshText}>Shuffle</Text>
               </TouchableOpacity>
             </ScrollView>
@@ -59,27 +70,88 @@ export default function CreateScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { padding: 25 },
-  logo: { width: 100, height: 30, resizeMode: 'contain', marginBottom: 10, opacity: 0.5 },
-  title: { fontSize: 28, fontWeight: '300', color: '#2F3E46' },
-  
-  glassCanvas: { 
-    flex: 1, 
-    margin: 20, marginBottom: 100,
-    backgroundColor: 'rgba(255,255,255,0.6)', 
-    borderRadius: 40, 
-    justifyContent: 'center', alignItems: 'center', 
-    padding: 20,
-    borderWidth: 1, borderColor: '#fff'
+
+  header: {
+    padding: 25,
+    paddingBottom: 10,
   },
-  
-  generateBtn: { backgroundColor: '#2F3E46', padding: 20, borderRadius: 20, width: '80%', alignItems: 'center' },
-  btnText: { color: '#fff', fontSize: 18, fontWeight: '500' },
-  
-  reasoning: { color: '#52796F', fontStyle: 'italic', marginBottom: 20, textAlign: 'center' },
-  collage: { flexDirection: 'column', gap: 15 },
-  piece: { width: 200, height: 200, borderRadius: 20, resizeMode: 'cover' },
-  
-  refreshBtn: { marginTop: 30, padding: 10 },
-  refreshText: { color: '#2F3E46', fontWeight: 'bold' }
+
+  logo: {
+    width: 100,
+    height: 30,
+    resizeMode: 'contain',
+    opacity: 0.5,
+    marginBottom: 8,
+  },
+
+  title: {
+    fontSize: 28,
+    fontWeight: '300',
+    color: '#2F3E46', // EXACT MATCH
+  },
+
+  glassCanvas: {
+    flex: 1,
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 110,
+    backgroundColor: 'rgba(255,255,255,0.6)', // SAME AS INDEX
+    borderRadius: 40,
+    padding: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#fff',
+  },
+
+  scrollContent: {
+    alignItems: 'center',
+    paddingBottom: 20,
+  },
+
+  generateBtn: {
+    backgroundColor: '#2F3E46', // SAME AS INDEX BUTTONS
+    paddingVertical: 18,
+    paddingHorizontal: 45,
+    borderRadius: 30,
+  },
+
+  btnText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '500',
+    letterSpacing: 1,
+  },
+
+  reasoning: {
+    color: '#52796F', // SAME SECONDARY COLOR
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginBottom: 25,
+    paddingHorizontal: 10,
+  },
+
+  collage: {
+    gap: 18,
+    alignItems: 'center',
+  },
+
+  piece: {
+    width: 210,
+    height: 210,
+    borderRadius: 25,
+    resizeMode: 'cover',
+  },
+
+  refreshBtn: {
+    marginTop: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+  },
+
+  refreshText: {
+    color: '#2F3E46',
+    fontWeight: '600',
+    letterSpacing: 1,
+  },
 });

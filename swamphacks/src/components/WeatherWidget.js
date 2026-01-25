@@ -24,9 +24,9 @@ function getWeatherVibe(weather) {
     };
   }
 
-  if (temp <= 12) {
+  if (temp <= 15) {
     return {
-      message: "Layer up 🧥",
+      message: "Make sure to layer up 🧥",
       image: IMAGES.cloudy,
     };
   }
@@ -47,7 +47,7 @@ function getWeatherVibe(weather) {
 
   if (condition.includes("sun")) {
     return {
-      message: "Sunny & cute ☀️",
+      message: "Protect your skin! ☀️",
       image: IMAGES.sunny,
     };
   }

@@ -27,12 +27,13 @@ export default function ClosetScreen() {
   };
 
   return (
-    <LinearGradient colors={['#EAF4F4', '#F6FFF8']} style={styles.container}>
+    <LinearGradient colors={['#d8cfaf', '#e6b89c']} style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.header}>
           <Image source={{ uri: LOGO_URI }} style={styles.logo} />
-          <Text style={styles.title}>My Collection</Text>
+          <Text style={styles.title}>My Closet</Text>
         </View>
+
         
         {loading && <ActivityIndicator size="large" color="#52796F" style={{ margin: 20 }} />}
         
@@ -59,27 +60,67 @@ export default function ClosetScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { padding: 25 },
-  logo: { width: 100, height: 30, resizeMode: 'contain', marginBottom: 10, opacity: 0.5 },
-  title: { fontSize: 28, fontWeight: '300', color: '#2F3E46' },
-  
+
+  header: {
+    paddingTop: 20,
+    paddingBottom: 10,
+    alignItems: 'center',
+  },
+
+  logo: {
+    width: 120,
+    height: 40,
+    resizeMode: 'contain',
+    opacity: 0.6,
+    marginBottom: 6,
+  },
+
+  title: {
+    fontSize: 26,
+    fontWeight: '300',
+    letterSpacing: 1,
+    color: '#49463b',
+  },
+
   glassItem: { 
-    flex: 1, 
-    margin: 8, 
-    height: 200, 
-    borderRadius: 20, 
-    backgroundColor: '#fff',
+    flex: 1,
+    margin: 8,
+    height: 200,
+    borderRadius: 25,
+    backgroundColor: '#f1e7c5',
+    borderWidth: 1,
+    borderColor: '#e6b89c',
     overflow: 'hidden',
-    elevation: 3,
-    shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 10 
+    shadowColor: '#ed9390',
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
   },
-  image: { width: '100%', height: '100%', resizeMode: 'cover' },
-  
+
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+
   fab: { 
-    position: 'absolute', bottom: 110, alignSelf: 'center', 
-    backgroundColor: 'rgba(47, 62, 70, 0.9)', 
-    paddingVertical: 15, paddingHorizontal: 30, borderRadius: 30,
-    shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 10
+    position: 'absolute',
+    bottom: 110,
+    alignSelf: 'center',
+    backgroundColor: '#fff',
+    paddingVertical: 14,
+    paddingHorizontal: 34,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: '#e6b89c',
+    shadowColor: '#ed9390',
+    shadowOpacity: 0.15,
+    shadowRadius: 15,
   },
-  fabText: { color: '#fff', fontWeight: '600', letterSpacing: 1 }
+
+  fabText: {
+    color: '#73634f',
+    fontWeight: '600',
+    letterSpacing: 1,
+  },
 });
