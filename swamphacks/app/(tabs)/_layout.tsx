@@ -23,7 +23,7 @@ export default function TabLayout() {
             left: 20,
             right: 20,
             elevation: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.85)', // Glass effect
+            backgroundColor: '#d8cfaf', // Glass effect
             borderRadius: 25,
             height: 70,
             borderTopWidth: 0,
