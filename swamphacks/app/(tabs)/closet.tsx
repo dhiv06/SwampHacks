@@ -36,18 +36,33 @@ export default function ClosetScreen() {
 
         
         {loading && <ActivityIndicator size="large" color="#52796F" style={{ margin: 20 }} />}
+        {/* MY OUTFITS CARD */}
+        <View style={styles.outfitsCard}>
+          <View style={styles.outfitsHeader}>
+            <Text style={styles.outfitsTitle}>My outfits</Text>
+            <Text style={styles.heart}>♥</Text>
+          </View>
+
+          <View style={styles.outfitsRow}>
+            <View style={styles.outfitSquare} />
+            <View style={styles.outfitSquare} />
+            <View style={styles.outfitSquare} />
+          </View>
+        </View>
         
         <FlatList
           data={closet}
           numColumns={2}
           keyExtractor={item => item.id}
-          contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 100 }}
+          contentContainerStyle={{ paddingHorizontal: 15,paddingBottom: 180}}
           renderItem={({ item }) => (
             <TouchableOpacity onLongPress={() => deleteItem(item.id).then(loadCloset)} style={styles.glassItem}>
               <Image source={{ uri: item.imageUri }} style={styles.image} />
             </TouchableOpacity>
           )}
         />
+        
+
 
         {/* Floating Glass Button */}
         <TouchableOpacity style={styles.fab} onPress={handleUpload}>
@@ -123,4 +138,52 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 1,
   },
+  outfitsCard: {
+  marginHorizontal: 20,
+  marginTop: 25,
+  marginBottom: 15,
+  backgroundColor: '#f1e7c5',
+  borderRadius: 30,
+  padding: 18,
+  
+  borderWidth: 1,
+  borderColor: '#e6b89c',
+  shadowColor: '#ed9390',
+  shadowOpacity: 0.08,
+  shadowRadius: 12,
+  shadowOffset: { width: 0, height: 6 },
+},
+
+outfitsHeader: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: 12,
+},
+
+outfitsTitle: {
+  fontSize: 16,
+  fontWeight: '600',
+  color: '#49463b',
+  letterSpacing: 0.5,
+},
+
+heart: {
+  fontSize: 18,
+  color: '#73634f',
+},
+
+outfitsRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+},
+
+outfitSquare: {
+  width: '30%',
+  aspectRatio: 1,
+  borderRadius: 16,
+  backgroundColor: '#e6b89c',
+  opacity: 0.6,
+},
+
 });

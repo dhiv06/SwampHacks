@@ -31,7 +31,7 @@ export default function HomeScreen() {
             <Image source={LOGO_URI} style={styles.logo} />
           </View>
 
-          <Text style={styles.welcomeText}>Good Morning.</Text>
+          <Text style={styles.welcomeText}>Welcome!</Text>
 
           {/* OOTD GLASS CARD */}
           <TouchableOpacity style={styles.glassCard} onPress={() => router.push('/(tabs)/create')}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   logoContainer: { height: 100, justifyContent: 'center', alignItems: 'center', marginBottom: 20 },
   logo: { width: 200, height: 80, resizeMode: 'contain' },
   
-  welcomeText: { fontFamily: 'Guckly', fontSize: 32, color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
+  welcomeText: { fontFamily: 'MouldyCheese', fontSize: 32, color: COLORS.text, marginBottom: 25, letterSpacing: 1 },
   
   glassCard: {
     backgroundColor: '#f1e7c5',
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#e6b89c',
   },
-  cardTitle: { fontFamily: 'AesthetNova', fontSize: 24, fontWeight: '600', color: COLORS.text },
+  cardTitle: { fontSize: 24, fontWeight: '600', color: COLORS.text },
   cardSubtitle: { fontSize: 14, color: COLORS.accent, marginTop: 5 },
   cardHeader: { fontWeight: '700', color: COLORS.accent, marginBottom: 5, textTransform: 'uppercase', fontSize: 12, letterSpacing: 1 },
   cardBody: { color: COLORS.text, fontSize: 16 },
