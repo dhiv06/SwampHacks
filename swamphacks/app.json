@@ -9,7 +9,13 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need access to your camera to scan your clothes for your closet.",
+        "NSPhotoLibraryUsageDescription": "We need access to your photos to upload clothing items.",
+        "NSCalendarsUsageDescription": "We need access to your calendar to suggest outfits based on your daily schedule.",
+        "NSCalendarsFullAccessUsageDescription": "We need access to your calendar to suggest outfits based on your daily schedule."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,6 +24,13 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_CALENDAR",
+        "WRITE_CALENDAR"
+      ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
@@ -37,6 +50,19 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "We need access to your camera to scan your clothes for your closet.",
+          "photosPermission": "We need access to your photos to upload clothing items."
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "We need access to your calendar to suggest outfits based on your daily schedule."
         }
       ]
     ],
